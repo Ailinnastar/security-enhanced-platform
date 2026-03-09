@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && node server.js",
+    "start:frontend": "cd frontend && npm run dev -- --port 5177"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +16,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "concurrently": "^9.2.1",
     "playwright": "^1.58.2"
   },
   "dependencies": {
