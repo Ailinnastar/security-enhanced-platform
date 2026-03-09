@@ -43,6 +43,7 @@ Each AI prototype is in its own folder. `cd` into the folder and follow its READ
 | Folder | AI Tool | Quick Start |
 |--------|---------|-------------|
 | `claude opus/` | Claude | `cd "claude opus" && npm run install:all && npm install && npm run dev` |
+| `gemini/` | Gemini | `cd gemini && npm install && npm start` |
 
 ---
 
