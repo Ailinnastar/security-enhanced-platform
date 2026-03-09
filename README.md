@@ -36,6 +36,16 @@ Prototype UIs were generated using different AI tools. Below are the resulting d
 
 ---
 
+## How to Run Each Prototype
+
+Each AI prototype is in its own folder. `cd` into the folder and follow its README:
+
+| Folder | AI Tool | Quick Start |
+|--------|---------|-------------|
+| `claude opus/` | Claude | `cd "claude opus" && npm run install:all && npm install && npm run dev` |
+
+---
+
 ## Repository
 
 - **Git:** https://github.sydney.edu.au/INFO2222-2026-S1/T04G04-PH01-TaskPilot.git
