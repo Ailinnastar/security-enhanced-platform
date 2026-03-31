@@ -52,14 +52,6 @@ The current Hi-Fi prototype focuses on team coordination and meeting support:
 - Pinned content in team chat
 - AI meeting summary (input + generated output)
 
-### Not fully working / TODO
-
-- Advanced reminder customization and notifications
-- Fine-grained role/permission controls
-- More robust edge-case/error-state handling for AI input
-- Extended export/reporting workflows
-- Stress-tested multi-user synchronization under heavy concurrent updates
-
 
 
 ## Tech Stack
