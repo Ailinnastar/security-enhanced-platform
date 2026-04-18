@@ -969,29 +969,6 @@ app.post('/api/servers/:sid/projects/:pid/minutes/generate-from-transcript', aut
 
     const resolvedGeminiApiKey = (req.headers['x-gemini-api-key'] || process.env.GEMINI_API_KEY);
 
-    // #region agent log: gemini env config (minutes from transcript)
-    fetch('http://127.0.0.1:7594/ingest/35d65346-6898-4e83-9f51-bb343950c4d2', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Debug-Session-Id': 'eb363c'
-      },
-      body: JSON.stringify({
-        sessionId: 'eb363c',
-        runId: 'precheck',
-        hypothesisId: 'H2',
-        location: 'server/index.js:minutes-from-transcript:env-check',
-        message: 'LLM env configuration present?',
-        data: {
-          openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
-          anthropicConfigured: Boolean(process.env.ANTHROPIC_API_KEY),
-          geminiConfigured: Boolean(process.env.GEMINI_API_KEY),
-        },
-        timestamp: Date.now()
-      })
-    }).catch(() => {});
-    // #endregion
-
     if (!process.env.OPENAI_API_KEY && !process.env.ANTHROPIC_API_KEY && !resolvedGeminiApiKey) {
       return res.status(503).json({
         error: 'LLM is not configured on the server. Set OPENAI_API_KEY, ANTHROPIC_API_KEY, or GEMINI_API_KEY.'
@@ -1213,29 +1190,6 @@ app.post('/api/servers/:sid/projects/:pid/tasks/import-from-document', authentic
     const replace = replaceExisting === true;
 
     const resolvedGeminiApiKey = (req.headers['x-gemini-api-key'] || geminiApiKey || process.env.GEMINI_API_KEY);
-
-    // #region agent log: gemini env config (import-from-document)
-    fetch('http://127.0.0.1:7594/ingest/35d65346-6898-4e83-9f51-bb343950c4d2', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Debug-Session-Id': 'eb363c'
-      },
-      body: JSON.stringify({
-        sessionId: 'eb363c',
-        runId: 'precheck',
-        hypothesisId: 'H1',
-        location: 'server/index.js:import-from-document:env-check',
-        message: 'LLM env configuration present?',
-        data: {
-          openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
-          anthropicConfigured: Boolean(process.env.ANTHROPIC_API_KEY),
-          geminiConfigured: Boolean(resolvedGeminiApiKey),
-        },
-        timestamp: Date.now()
-      })
-    }).catch(() => {});
-    // #endregion
 
     if (replace) {
       // Only remove tasks created by the current user to avoid deleting others' work.

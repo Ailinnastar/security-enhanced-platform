@@ -3,7 +3,11 @@ node_modules/
 dist/
 .env
 .env.local
+.env.*.local
 *.log
 .DS_Store
+# Course handouts / local docs (not part of runnable platform)
+*.pdf
+INFO2222*.pdf
 # Local SQLite (user data); do not commit real credentials
 server/studygroup.db
