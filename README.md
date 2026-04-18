@@ -21,5 +21,3 @@ npm run install:all
 npm start
 ```
 
-- **GitHub (USyd):** use your course remote as instructed by the unit.  
-- **Secrets:** never commit `.env` or `studygroup.db`; use `server/.env.example` inside the app folder as a template.
