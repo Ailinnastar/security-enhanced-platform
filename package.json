@@ -1,16 +1,10 @@
 {
-  "name": "studygroup",
-  "version": "1.0.0",
-  "description": "A web-based communication platform for university group work",
+  "name": "taskpilot-monorepo-root",
+  "private": true,
+  "description": "Run and install commands delegate to security-enhanced-platform/",
   "scripts": {
-    "test": "node server/scripts/security-smoke-test.js",
-    "install:all": "cd server && npm install && cd ../client && npm install",
-    "dev:server": "cd server && node index.js",
-    "dev:client": "cd client && npm run dev",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "start": "npm run dev"
-  },
-  "devDependencies": {
-    "concurrently": "^9.2.1"
+    "install": "npm --prefix security-enhanced-platform install && npm --prefix security-enhanced-platform run install:all",
+    "start": "npm --prefix security-enhanced-platform start",
+    "test": "npm --prefix security-enhanced-platform test"
   }
 }
