@@ -9,5 +9,6 @@ dist/
 .DS_Store
 *.pdf
 INFO2222*.pdf
+visual-test*.png
 server/studygroup.db
 *.db

@@ -26,12 +26,21 @@ function accentDerivatives(hex) {
   return { hover, light };
 }
 
+/** Live preview while the Display dialog adjusts the size slider (does not write localStorage). */
+export function previewBaseFont(px) {
+  const root = document.documentElement;
+  let n = Number(px);
+  if (!Number.isFinite(n)) return;
+  n = Math.min(30, Math.max(14, Math.round(n)));
+  root.style.setProperty('--sg-base-font', `${n}px`);
+}
+
 /** Apply font size + accent from localStorage (safe defaults). */
 export function applyUserPreferences() {
   const root = document.documentElement;
   let px = parseInt(localStorage.getItem(FONT_KEY), 10);
-  if (Number.isNaN(px)) px = 15;
-  px = Math.min(22, Math.max(12, px));
+  if (Number.isNaN(px)) px = 17;
+  px = Math.min(30, Math.max(14, px));
 
   let accent = (localStorage.getItem(ACCENT_KEY) || '#5865F2').trim();
   if (!accent.startsWith('#')) accent = `#${accent}`;
@@ -46,8 +55,8 @@ export function applyUserPreferences() {
 
 export function getStoredFontPx() {
   let px = parseInt(localStorage.getItem(FONT_KEY), 10);
-  if (Number.isNaN(px)) px = 15;
-  return Math.min(22, Math.max(12, px));
+  if (Number.isNaN(px)) px = 17;
+  return Math.min(30, Math.max(14, px));
 }
 
 export function getStoredAccent() {

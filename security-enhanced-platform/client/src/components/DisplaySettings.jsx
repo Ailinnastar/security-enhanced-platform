@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
-import { applyUserPreferences, getStoredFontPx, getStoredAccent } from '../userPreferences';
+import { applyUserPreferences, previewBaseFont, getStoredFontPx, getStoredAccent } from '../userPreferences';
 
 export default function DisplaySettings() {
   const [open, setOpen] = useState(false);
-  const [fontPx, setFontPx] = useState(15);
-  const [accent, setAccent] = useState('#5865F2');
+  const [fontPx, setFontPx] = useState(() => getStoredFontPx());
+  const [accent, setAccent] = useState(() => getStoredAccent());
 
   useEffect(() => {
     if (!open) return;
     setFontPx(getStoredFontPx());
     setAccent(getStoredAccent());
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    previewBaseFont(fontPx);
+  }, [open, fontPx]);
+
+  useEffect(() => {
+    if (open) return;
+    applyUserPreferences();
   }, [open]);
 
   function save() {
@@ -30,7 +40,7 @@ export default function DisplaySettings() {
   function resetDefaults() {
     localStorage.removeItem('sg_base_font_px');
     localStorage.removeItem('sg_accent_hex');
-    setFontPx(15);
+    setFontPx(17);
     setAccent('#5865F2');
     applyUserPreferences();
     setOpen(false);
@@ -59,8 +69,8 @@ export default function DisplaySettings() {
               <input
                 id="sg-font-range"
                 type="range"
-                min={12}
-                max={22}
+                min={14}
+                max={30}
                 step={1}
                 value={fontPx}
                 onChange={e => setFontPx(Number(e.target.value))}
@@ -71,27 +81,36 @@ export default function DisplaySettings() {
               </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="sg-accent">Accent colour</label>
+            <fieldset className="display-settings-accent-fieldset form-group">
+              <legend className="display-settings-accent-legend">Accent colour</legend>
               <div className="display-settings-color-row">
                 <input
                   id="sg-accent"
                   type="color"
                   value={accent}
                   onChange={e => setAccent(e.target.value)}
+                  autoComplete="off"
                   aria-label="Pick accent colour"
                 />
                 <input
+                  id="sg-accent-hex"
                   type="text"
+                  name="sg-accent-hex"
                   value={accent}
                   onChange={e => setAccent(e.target.value)}
                   spellCheck={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  inputMode="text"
+                  data-1p-ignore
+                  data-lpignore="true"
                   className="display-settings-hex"
                   maxLength={7}
                 />
               </div>
               <p className="muted small">Used for buttons, links, and highlights across the app.</p>
-            </div>
+            </fieldset>
 
             <div className="display-settings-actions">
               <button type="button" className="btn btn-ghost" onClick={() => setOpen(false)} title="Close without saving changes">

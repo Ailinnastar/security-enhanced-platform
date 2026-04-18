@@ -80,6 +80,7 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
                 role="button"
                 tabIndex={0}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleComplete(d.id); } }}
+
                 title={d.completed ? 'Mark as not done' : 'Mark this deadline as completed'}
               >
                 {d.completed && <span style={{ fontSize: '.7rem' }}>&#x2713;</span>}
@@ -98,6 +99,7 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
               <button
                 type="button"
                 className="btn btn-ghost"
+
                 style={{ fontSize: '.7rem', padding: '3px 8px' }}
                 onClick={() => handleDelete(d.id)}
                 title="Remove this deadline from the server"

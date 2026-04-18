@@ -235,6 +235,7 @@ export default function Layout({ user, token, onLogout }) {
                 <span className="server-desc">{activeServer.description}</span>
               )}
               <button
+                type="button"
                 className="btn btn-ghost"
                 style={{ marginLeft: 'auto' }}
                 onClick={toggleMembers}
@@ -242,7 +243,14 @@ export default function Layout({ user, token, onLogout }) {
               >
                 {showMembers ? 'Hide Members' : 'Show Members'}
               </button>
-              <span className="invite-code" onClick={copyInviteCode} title="Click to copy invite code">
+              <span
+                className="invite-code"
+                role="button"
+                tabIndex={0}
+                onClick={copyInviteCode}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyInviteCode(); } }}
+                title="Click to copy invite code"
+              >
                 Invite: {activeServer.invite_code}
               </span>
             </div>

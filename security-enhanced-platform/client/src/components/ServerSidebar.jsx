@@ -54,9 +54,12 @@ export default function ServerSidebar({ servers, activeServer, onSelect, onServe
         {servers.map((s, i) => (
           <div
             key={s.id}
+            role="button"
+            tabIndex={0}
             className={`server-icon ${activeServer?.id === s.id ? 'active' : ''}`}
             style={{ background: colors[i % colors.length] }}
             onClick={() => onSelect(s)}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(s); } }}
             title={`Open server: ${s.name}`}
           >
             {getInitials(s.name)}
@@ -65,10 +68,24 @@ export default function ServerSidebar({ servers, activeServer, onSelect, onServe
 
         <div className="divider" />
 
-        <div className="server-icon add-server" onClick={() => { setShowCreate(true); setError(''); }} title="Create Server">
+        <div
+          role="button"
+          tabIndex={0}
+          className="server-icon add-server"
+          onClick={() => { setShowCreate(true); setError(''); }}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowCreate(true); setError(''); } }}
+          title="Creating a new server"
+        >
           +
         </div>
-        <div className="server-icon join-server" onClick={() => { setShowJoin(true); setError(''); }} title="Join Server">
+        <div
+          role="button"
+          tabIndex={0}
+          className="server-icon join-server"
+          onClick={() => { setShowJoin(true); setError(''); }}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setShowJoin(true); setError(''); } }}
+          title="Join a server with an invite code"
+        >
           &#x2192;
         </div>
       </aside>

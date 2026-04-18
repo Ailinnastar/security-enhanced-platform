@@ -115,6 +115,7 @@ export default function VideoSummaryPanel({ summaries, serverId, token, activePr
             <button
               type="button"
               className="btn btn-ghost"
+
               style={{ fontSize: '.7rem', padding: '3px 8px' }}
               onClick={() => handleDelete(s.id)}
               title="Delete this meeting summary"

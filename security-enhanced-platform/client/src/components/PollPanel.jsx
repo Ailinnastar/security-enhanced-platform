@@ -141,10 +141,10 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
       </div>
 
       <div className="tab-bar" style={{ padding: 0, marginBottom: 12, borderRadius: 8, overflow: 'hidden' }}>
-        <button type="button" className={pollTab === 'current' ? 'active' : ''} onClick={() => setPollTab('current')} title="Polls that are still open or waiting for results">
+        <button type="button" className={`${pollTab === 'current' ? 'active' : ''}`} onClick={() => setPollTab('current')} title="Polls that are still open or waiting for results">
           Current ({currentPolls.length})
         </button>
-        <button type="button" className={pollTab === 'past' ? 'active' : ''} onClick={() => setPollTab('past')} title="Polls whose result deadline has passed">
+        <button type="button" className={`${pollTab === 'past' ? 'active' : ''}`} onClick={() => setPollTab('past')} title="Polls whose result deadline has passed">
           Past History ({pastPolls.length})
         </button>
       </div>
@@ -289,6 +289,7 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
                   <button
                     type="button"
                     className="btn btn-ghost"
+
                     onClick={() => {
                       const hours = Math.max(1, Number(xHoursLater) || 1);
                       const target = new Date(Date.now() + hours * 60 * 60 * 1000);

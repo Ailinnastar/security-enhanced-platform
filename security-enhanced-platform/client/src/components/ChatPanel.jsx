@@ -190,6 +190,7 @@ export default function ChatPanel({ messages, polls, setPolls, serverId, token, 
               <span className="msg-time">{formatTime(msg.created_at)}</span>
               <div className="msg-actions">
                 <button
+                  type="button"
                   className={msg.is_pinned ? 'pinned' : ''}
                   onClick={() => togglePin(msg.id)}
                   title={msg.is_pinned ? 'Unpin message' : 'Pin message'}

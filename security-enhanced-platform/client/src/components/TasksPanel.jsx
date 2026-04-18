@@ -186,9 +186,11 @@ export default function TasksPanel({
             </button>
           )}
           <button
+            type="button"
             className="btn btn-ghost"
             onClick={openImportPicker}
             disabled={importingDoc}
+
             title="Import tasks/parts from a document (PDF) using Gemini"
           >
             {importingDoc ? 'Importing...' : '+ Import PDF'}
@@ -309,7 +311,9 @@ export default function TasksPanel({
                     <div className="task-status-head">
                       <span>{s.label}</span>
                       <button
+                        type="button"
                         className="btn btn-ghost"
+
                         style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }}
                         onClick={() => openAddPart(task.id)}
                         title="Add a part (you can choose status in the form)"
