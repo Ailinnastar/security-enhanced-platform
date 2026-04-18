@@ -11,3 +11,4 @@ dist/
 INFO2222*.pdf
 # Local SQLite (user data); do not commit real credentials
 server/studygroup.db
+*.db

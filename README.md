@@ -1,44 +1,49 @@
-# Study group platform (code only)
+# TaskPilot — INFO2222 Group collaboration app
 
-University group-work app: chat, deadlines, polls, tasks, meeting notes. **API keys are never committed** — configure them locally via environment variables or the optional Gemini field in the UI (stored in your browser).
+**T04G04-PH01** · INFO2222 2026 S1 · [USyd repository](https://github.sydney.edu.au/INFO2222-2026-S1/T04G04-PH01-TaskPilot)
 
-## Prerequisites
+Web-based group-work platform (chat, servers, deadlines, polls, tasks, meeting notes). Core **runnable app** for Phase 2+ work lives at the **repository root** (`client/`, `server/`). Earlier submission copies and AI prototypes are in other folders (see below).
 
-- Node.js 18+
-- npm 9+
-
-## Install
+## Quick start (main app — root folder)
 
 ```bash
 npm install
 npm run install:all
-```
-
-## Run
-
-```bash
 npm start
 ```
 
-- Frontend: http://localhost:5173 (proxies `/api` and Socket.IO to the server)
+- Frontend: http://localhost:5173 (proxies `/api` and Socket.IO)
 - Backend: http://localhost:3001
 
-## Optional: AI features (local only)
+**Security:** passwords are stored with **bcrypt** (`server/passwords.js`). Run **`npm test`** for automated checks. Do not commit `.env` or `studygroup.db`; copy `server/.env.example` to `server/.env` for optional API keys (`GEMINI_API_KEY`, `OPENAI_API_KEY`, `JWT_SECRET`, etc.).
 
-Create `server/.env` (this file is gitignored) if you use server-side keys, for example:
+## Repository layout
 
-```bash
-# Optional — only names shown; never paste real keys into git-tracked files
-# GEMINI_API_KEY=
-# OPENAI_API_KEY=
-# JWT_SECRET=your-long-random-secret
-```
+| Path | Purpose |
+|------|---------|
+| `client/`, `server/` at **root** | Current integrated app (includes security-hardened password handling) |
+| `claude_upload/` | Packaged copy from earlier milestone |
+| `claude opus/`, `gemini/` | Separate AI-generated prototype folders |
+| `docs/prototypes/` | Static prototype screenshots |
 
-## Security notes
+## Prototype scope (high level)
 
-- Passwords are stored as **bcrypt** hashes (`server/passwords.js`).
-- Run **`npm test`** for automated password checks.
+Polls, project/task board, deadlines, pinned chat, AI-assisted meeting notes (keys via env or optional client-side field — never commit real keys).
 
-## Repository contents
+## Tech stack
 
-Only source needed to run the platform (`client/`, `server/`, root `package.json`). No PDFs, databases, or `.env` files.
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18, Vite |
+| Backend | Node.js, Express |
+| Real-time | Socket.IO |
+| Database | SQLite (sql.js) |
+| Auth | bcryptjs, JWT |
+
+## AI / assessment documentation
+
+The unit requires documenting prompts and AI-assisted work in your **written report**. This README stays short; put full prompt tables and screenshots in the report or PDF as required by your tutor.
+
+---
+
+*Sign in to [GitHub Enterprise Sydney](https://github.sydney.edu.au/) with your UniKey to clone or push.*
