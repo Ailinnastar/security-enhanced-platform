@@ -81,13 +81,24 @@ export default function Auth({ onLogin }) {
           />
         </div>
 
-        <button className="btn-primary" type="submit" disabled={loading}>
+        <button
+          className="btn-primary"
+          type="submit"
+          disabled={loading}
+          title={isRegister ? 'Create your account with the details above' : 'Sign in with your email and password'}
+        >
           {loading ? 'Please wait...' : isRegister ? 'Create Account' : 'Sign In'}
         </button>
 
         <div className="toggle">
           {isRegister ? 'Already have an account? ' : "Don't have an account? "}
-          <span onClick={() => { setIsRegister(!isRegister); setError(''); }}>
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => { setIsRegister(!isRegister); setError(''); }}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsRegister(!isRegister); setError(''); } }}
+            title={isRegister ? 'Switch to sign-in form' : 'Switch to registration form'}
+          >
             {isRegister ? 'Sign In' : 'Create Account'}
           </span>
         </div>

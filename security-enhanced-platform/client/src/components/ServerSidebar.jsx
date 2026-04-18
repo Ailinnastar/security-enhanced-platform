@@ -57,7 +57,7 @@ export default function ServerSidebar({ servers, activeServer, onSelect, onServe
             className={`server-icon ${activeServer?.id === s.id ? 'active' : ''}`}
             style={{ background: colors[i % colors.length] }}
             onClick={() => onSelect(s)}
-            title={s.name}
+            title={`Open server: ${s.name}`}
           >
             {getInitials(s.name)}
           </div>
@@ -87,8 +87,8 @@ export default function ServerSidebar({ servers, activeServer, onSelect, onServe
               <input value={desc} onChange={e => setDesc(e.target.value)} placeholder="What's this server for?" />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowCreate(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Create Server</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowCreate(false)} title="Close without creating a server">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Create this server and add you as owner">Create Server</button>
             </div>
           </form>
         </div>
@@ -104,8 +104,8 @@ export default function ServerSidebar({ servers, activeServer, onSelect, onServe
               <input value={inviteCode} onChange={e => setInviteCode(e.target.value)} placeholder="Enter invite code" required />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowJoin(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Join Server</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowJoin(false)} title="Close without joining">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Join a server using its invite code">Join Server</button>
             </div>
           </form>
         </div>

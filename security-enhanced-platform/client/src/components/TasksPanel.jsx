@@ -177,11 +177,11 @@ export default function TasksPanel({
       <div className="panel-header">
         <h3>Projects &amp; Tasks</h3>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <button className="btn btn-ghost" onClick={() => setShowProjectForm(true)}>
+          <button type="button" className="btn btn-ghost" onClick={() => setShowProjectForm(true)} title="Create a new project for this server">
             + Project
           </button>
           {activeProjectId && (
-            <button className="btn btn-accent" onClick={() => setShowTaskForm(true)}>
+            <button type="button" className="btn btn-accent" onClick={() => setShowTaskForm(true)} title="Add a task under the selected project">
               + Task
             </button>
           )}
@@ -357,8 +357,8 @@ export default function TasksPanel({
               />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowProjectForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Create</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowProjectForm(false)} title="Close without creating a project">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Create this project">Create</button>
             </div>
           </form>
         </div>
@@ -373,8 +373,8 @@ export default function TasksPanel({
               <input value={taskTitle} onChange={e => setTaskTitle(e.target.value)} required />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowTaskForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Create</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowTaskForm(false)} title="Close without adding a task">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Create this task under the selected project">Create</button>
             </div>
           </form>
         </div>
@@ -411,8 +411,8 @@ export default function TasksPanel({
               />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowPartForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Add Part</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowPartForm(false)} title="Close without adding a part">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Add this part to the selected task">Add Part</button>
             </div>
           </form>
         </div>
@@ -477,15 +477,15 @@ function PartCard({ part, onUpdatePart }) {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {!editing ? (
-            <button className="btn btn-ghost" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} onClick={() => setEditing(true)}>
+            <button type="button" className="btn btn-ghost" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} onClick={() => setEditing(true)} title="Edit title, status, and notes for this part">
               Edit
             </button>
           ) : (
             <>
-              <button className="btn btn-success" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} type="button" onClick={save}>
+              <button className="btn btn-success" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} type="button" onClick={save} title="Save changes to this part">
                 Save
               </button>
-              <button className="btn btn-ghost" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} type="button" onClick={() => setEditing(false)}>
+              <button className="btn btn-ghost" style={{ fontSize: '.7rem', padding: '3px 8px', borderRadius: 6 }} type="button" onClick={() => setEditing(false)} title="Discard edits and keep saved version">
                 Cancel
               </button>
             </>

@@ -49,7 +49,7 @@ export default function MemberSidebar({ members, onlineUsers, user, onLogout }) 
         <div className="user-info">
           <div className="uname">{user.username}</div>
         </div>
-        <button onClick={onLogout}>Logout</button>
+        <button type="button" onClick={onLogout} title="Sign out and return to the login screen">Logout</button>
       </div>
     </aside>
   );

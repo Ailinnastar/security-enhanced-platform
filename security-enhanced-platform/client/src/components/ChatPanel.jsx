@@ -118,7 +118,13 @@ export default function ChatPanel({ messages, polls, setPolls, serverId, token, 
   return (
     <div className="tab-content" style={{ position: 'relative' }}>
       <div style={{ padding: '8px 16px 0', display: 'flex', justifyContent: 'flex-end' }}>
-        <button className="btn btn-ghost" style={{ fontSize: '.75rem', padding: '4px 10px' }} onClick={loadPinned}>
+        <button
+          type="button"
+          className="btn btn-ghost"
+          style={{ fontSize: '.75rem', padding: '4px 10px' }}
+          onClick={loadPinned}
+          title="View messages that have been pinned in this server"
+        >
           Pinned Messages
         </button>
       </div>
@@ -210,7 +216,7 @@ export default function ChatPanel({ messages, polls, setPolls, serverId, token, 
             onChange={handleInputChange}
             placeholder="Type a message..."
           />
-          <button type="submit">Send</button>
+          <button type="submit" title="Send your message to this server chat">Send</button>
         </div>
       </form>
 
@@ -219,9 +225,11 @@ export default function ChatPanel({ messages, polls, setPolls, serverId, token, 
           <div className="pinned-header">
             <span>Pinned Messages</span>
             <button
+              type="button"
               className="btn btn-ghost"
               style={{ fontSize: '.7rem', padding: '3px 8px' }}
               onClick={() => setShowPinned(false)}
+              title="Close the pinned messages panel"
             >
               Close
             </button>

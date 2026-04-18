@@ -137,14 +137,14 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
     <div className="panel">
       <div className="panel-header">
         <h3>Polls</h3>
-        <button className="btn btn-accent" onClick={() => setShowForm(true)}>+ Create Poll</button>
+        <button type="button" className="btn btn-accent" onClick={() => setShowForm(true)} title="Open form to create a new poll for this server">+ Create Poll</button>
       </div>
 
       <div className="tab-bar" style={{ padding: 0, marginBottom: 12, borderRadius: 8, overflow: 'hidden' }}>
-        <button className={pollTab === 'current' ? 'active' : ''} onClick={() => setPollTab('current')}>
+        <button type="button" className={pollTab === 'current' ? 'active' : ''} onClick={() => setPollTab('current')} title="Polls that are still open or waiting for results">
           Current ({currentPolls.length})
         </button>
-        <button className={pollTab === 'past' ? 'active' : ''} onClick={() => setPollTab('past')}>
+        <button type="button" className={pollTab === 'past' ? 'active' : ''} onClick={() => setPollTab('past')} title="Polls whose result deadline has passed">
           Past History ({pastPolls.length})
         </button>
       </div>
@@ -172,13 +172,13 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
             </div>
             {isOwner && (
               <div className="card-actions" style={{ marginTop: 0, marginBottom: 8 }}>
-                <button className="btn btn-ghost" onClick={() => {
+                <button type="button" className="btn btn-ghost" onClick={() => {
                   setEditingPollId(poll.id);
                   setEditingDeadline(toDatetimeLocalValue(new Date(poll.results_visible_at)));
-                }}>
+                }} title="Change when poll results become visible">
                   Modify Time
                 </button>
-                <button className="btn btn-danger" onClick={() => handleDeletePoll(poll.id)}>
+                <button type="button" className="btn btn-danger" onClick={() => handleDeletePoll(poll.id)} title="Permanently delete this poll">
                   Delete
                 </button>
               </div>
@@ -190,13 +190,13 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
                   value={editingDeadline}
                   onChange={e => setEditingDeadline(e.target.value)}
                 />
-                <button className="btn btn-success" onClick={() => handleUpdateDeadline(poll.id)}>
+                <button type="button" className="btn btn-success" onClick={() => handleUpdateDeadline(poll.id)} title="Save the new results-visible time">
                   Save
                 </button>
-                <button className="btn btn-ghost" onClick={() => {
+                <button type="button" className="btn btn-ghost" onClick={() => {
                   setEditingPollId(null);
                   setEditingDeadline('');
-                }}>
+                }} title="Discard deadline edits">
                   Cancel
                 </button>
               </div>
@@ -213,6 +213,7 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
                       if (!isClosed) handleVote(poll.id, opt.id);
                     }}
                     style={{ cursor: isClosed ? 'default' : 'pointer', opacity: isClosed ? 0.85 : 1 }}
+                    title={isClosed ? 'This poll is closed' : `Vote for: ${opt.option_text}`}
                   >
                     <div className="bar" style={{ width: resultsVisible ? `${pct}%` : '0%' }} />
                     <div className="opt-content">
@@ -252,11 +253,11 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
                       required
                     />
                     {options.length > 2 && (
-                      <button type="button" onClick={() => removeOption(i)}>&#x2715;</button>
+                      <button type="button" onClick={() => removeOption(i)} title="Remove this answer option">&#x2715;</button>
                     )}
                   </div>
                 ))}
-                <button type="button" className="add-option-btn" onClick={addOption}>+ Add Option</button>
+                <button type="button" className="add-option-btn" onClick={addOption} title="Add another answer choice to the poll">+ Add Option</button>
               </div>
             </div>
             <div className="form-group">
@@ -294,6 +295,7 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
                       setResultsVisibleAt(toDatetimeLocalValue(target));
                       setDeadlinePreset('custom');
                     }}
+                    title="Set results-visible time to X hours from now"
                   >
                     Set X hours later
                   </button>
@@ -310,8 +312,8 @@ export default function PollPanel({ polls, setPolls, serverId, token, userId }) 
               />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Create Poll</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)} title="Close without creating a poll">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Create this poll on the server">Create Poll</button>
             </div>
           </form>
         </div>

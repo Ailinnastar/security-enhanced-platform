@@ -59,7 +59,7 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
     <div className="panel">
       <div className="panel-header">
         <h3>Deadline Tracker</h3>
-        <button className="btn btn-accent" onClick={() => setShowForm(true)}>+ Add Deadline</button>
+        <button type="button" className="btn btn-accent" onClick={() => setShowForm(true)} title="Add a new deadline for this server">+ Add Deadline</button>
       </div>
 
       {deadlines.length === 0 && (
@@ -77,6 +77,10 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
               <div
                 className={`deadline-check ${d.completed ? 'done' : ''}`}
                 onClick={() => toggleComplete(d.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleComplete(d.id); } }}
+                title={d.completed ? 'Mark as not done' : 'Mark this deadline as completed'}
               >
                 {d.completed && <span style={{ fontSize: '.7rem' }}>&#x2713;</span>}
               </div>
@@ -92,9 +96,11 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
                 {d.description && <div className="card-body">{d.description}</div>}
               </div>
               <button
+                type="button"
                 className="btn btn-ghost"
                 style={{ fontSize: '.7rem', padding: '3px 8px' }}
                 onClick={() => handleDelete(d.id)}
+                title="Remove this deadline from the server"
               >
                 Delete
               </button>
@@ -120,8 +126,8 @@ export default function DeadlinePanel({ deadlines, serverId, token }) {
               <input type="datetime-local" value={dueDate} onChange={e => setDueDate(e.target.value)} required />
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Create Deadline</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)} title="Close without saving">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Save this deadline for everyone on the server">Create Deadline</button>
             </div>
           </form>
         </div>

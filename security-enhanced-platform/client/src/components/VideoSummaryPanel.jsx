@@ -81,7 +81,7 @@ export default function VideoSummaryPanel({ summaries, serverId, token, activePr
     <div className="panel">
       <div className="panel-header">
         <h3>Meeting Notes &amp; Video Call Summaries</h3>
-        <button className="btn btn-accent" onClick={() => setShowForm(true)}>+ Add Summary</button>
+        <button type="button" className="btn btn-accent" onClick={() => setShowForm(true)} title="Add meeting notes or generate from a transcript">+ Add Summary</button>
       </div>
 
       {generating && (
@@ -113,9 +113,11 @@ export default function VideoSummaryPanel({ summaries, serverId, token, activePr
               </div>
             </div>
             <button
+              type="button"
               className="btn btn-ghost"
               style={{ fontSize: '.7rem', padding: '3px 8px' }}
               onClick={() => handleDelete(s.id)}
+              title="Delete this meeting summary"
             >
               Delete
             </button>
@@ -158,8 +160,8 @@ export default function VideoSummaryPanel({ summaries, serverId, token, activePr
               </div>
             </div>
             <div className="modal-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)}>Cancel</button>
-              <button type="submit" className="btn btn-accent">Save Summary</button>
+              <button type="button" className="btn btn-ghost" onClick={() => setShowForm(false)} title="Close without saving">Cancel</button>
+              <button type="submit" className="btn btn-accent" title="Save notes; if transcript + project are set, run AI workflow">Save Summary</button>
             </div>
           </form>
         </div>

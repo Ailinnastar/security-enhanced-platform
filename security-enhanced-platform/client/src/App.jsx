@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import Auth from './components/Auth';
 import Layout from './components/Layout';
+import DisplaySettings from './components/DisplaySettings';
+import { applyUserPreferences } from './userPreferences';
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    applyUserPreferences();
+  }, []);
 
   useEffect(() => {
     const savedUser = localStorage.getItem('sg_user');
@@ -29,6 +35,14 @@ export default function App() {
     localStorage.removeItem('sg_token');
   }
 
-  if (!user || !token) return <Auth onLogin={handleLogin} />;
-  return <Layout user={user} token={token} onLogout={handleLogout} />;
+  return (
+    <>
+      {!user || !token ? (
+        <Auth onLogin={handleLogin} />
+      ) : (
+        <Layout user={user} token={token} onLogout={handleLogout} />
+      )}
+      <DisplaySettings />
+    </>
+  );
 }

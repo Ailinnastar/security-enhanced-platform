@@ -209,11 +209,11 @@ export default function Layout({ user, token, onLogout }) {
   }
 
   const tabs = [
-    { id: 'chat', label: 'Chat' },
-    { id: 'deadlines', label: 'Deadlines' },
-    { id: 'polls', label: 'Polls' },
-    { id: 'tasks', label: 'Tasks' },
-    { id: 'summaries', label: 'Meeting Notes' },
+    { id: 'chat', label: 'Chat', title: 'Live chat and pinned polls for this server.' },
+    { id: 'deadlines', label: 'Deadlines', title: 'Track due dates and mark work complete.' },
+    { id: 'polls', label: 'Polls', title: 'Create votes and see results after the deadline.' },
+    { id: 'tasks', label: 'Tasks', title: 'Projects, tasks, parts, and PDF import.' },
+    { id: 'summaries', label: 'Meeting Notes', title: 'Meeting summaries and AI-assisted notes.' },
   ];
 
   return (
@@ -251,8 +251,10 @@ export default function Layout({ user, token, onLogout }) {
               {tabs.map(t => (
                 <button
                   key={t.id}
+                  type="button"
                   className={activeTab === t.id ? 'active' : ''}
                   onClick={() => setActiveTab(t.id)}
+                  title={t.title}
                 >
                   {t.label}
                 </button>
